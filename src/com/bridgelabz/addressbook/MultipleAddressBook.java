@@ -1,49 +1,46 @@
 package com.bridgelabz.addressbook;
-
-/*
- * UC - 6 Refactor to add multiple Address Book to the System. Each Address Book
-has a unique Name.
+/*Problem Statement UC - 6
+ * Refactor to add multiple Address Book to the System. Each Address Book has a unique name.
  */
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class MultipleAddressBook {
 	static Scanner scanner = new Scanner(System.in);
-	// Here used hashmap it gives the key value pair.
-	HashMap<String, AddressBook> addressbook = new HashMap<>();
-
-	// create method for add multiple addressbook.
+	HashMap<String, EditContactInAddressBook> addressbook = new HashMap<>();
+	/*
+	 * ablility to add multiple addressbook
+	 * 
+	 */
 	public void addMultipleAddressBook() {
 		while (true) {
-
-			System.out.println("Enter selection \n1)To Access Address Book\n2)exit");
+			System.out.println("Enter selection \n1)To Access address book\n2)exit and add");// add new if running
 			int selection = scanner.nextInt();
-
 			switch (selection) {
-			// In this case check addressbook name present or not.
+
 			case 1:
+				System.out.println("Enter Address book name");
 				String name = scanner.next();
 				if (addressbook.containsKey(name)) {
-					System.out.println("Entered Addressbook name already present");
+					System.out.println("Entered addressbook name already present");
 				} else {
-					AddressBook address = new AddressBook();
-					System.out.println("Welcome To Addressbook " + name);
+					EditContactInAddressBook address = new EditContactInAddressBook();
+					address.equals(name);
+					System.out.println("Welcome to addressbook" + name);
 					addressbook.put(name, address);
-
 				}
 				break;
 
 			case 2:
-				System.out.println("exiting");
+				System.out.println("Exiting");
 				System.exit(0);
 			}
 		}
 	}
-
+		//main method
 	public static void main(String[] args) {
-		// object of a class create.
 		MultipleAddressBook multiplebook = new MultipleAddressBook();
-		// method calling
+		System.out.println("Welcome to the address book system");
 		multiplebook.addMultipleAddressBook();
 
 	}
