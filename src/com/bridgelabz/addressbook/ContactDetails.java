@@ -6,30 +6,33 @@ package com.bridgelabz.addressbook;
  * POJO - It stands for Plain old java object.
  */
 public class ContactDetails {
-	//variables
+	// variables
 	private String firstName;
 	private String lastName;
 	private String address;
 	private String city;
 	private String state;
-	private int zipcode;
-	private String phoneNo;
+	private String zipcode;
+	private String phoneNumber;
 	private String email;
-
-	//create parameterized constructor
-	public ContactDetails(String firstName, String lastName, String address, String city, String state, int zipcode,
-			String phoneNo, String email) {
-		setFirstName(firstName);
-		setLastName(lastName);
-		setAddress(address);
-		setCity(city);
-		setState(state);
-		setZipcode(zipcode);
-		setPhoneNo(phoneNo);
-		setEmail(email);
+	// create default constructor
+	public ContactDetails() {
+		super();
+	}	
+	// create parameterized constructor
+	public ContactDetails(String firstName, String lastName, String address, String city, String state, String zipcode,
+			String phoneNumber, String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zipcode;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
 	}
-
-	//create getter and setter methods
+	// create getter and setter methods
 	public String getFirstName() {
 		return firstName;
 	}
@@ -70,20 +73,20 @@ public class ContactDetails {
 		this.state = state;
 	}
 
-	public int getZipcode() {
+	public String getZipcode() {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode) {
+	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
 
-	public String getPhoneNo() {
-		return phoneNo;
+	public String getphoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
+	public void setphoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getEmail() {
@@ -94,12 +97,17 @@ public class ContactDetails {
 		this.email = email;
 	}
 
-	//override toString method
+	// override toString method
 	@Override
 	public String toString() {
-		return "ContactDetails [FirstName = " + firstName + ", LastName = " + lastName + ", Address = " + address + ", City = "
-				+ city + ", Zipcode = " + zipcode + ", State = " + state + ", PhoneNo = " + phoneNo + ", Email = "
-				+ email + "]";
+		return "ContactDetails [FirstName = " + firstName + ", LastName = " + lastName + ", Address = " + address
+				+ ", City = " + city + ", Zipcode = " + zipcode + ", State = " + state + ", PhoneNo = " + phoneNumber
+				+ ", Email = " + email + "]";
 	}
-
+	//override equals method
+	@Override
+	  public boolean equals(Object object) {
+	    ContactDetails contact = (ContactDetails) object;
+	    return this.getFirstName().equalsIgnoreCase(contact.firstName);
+	  }
 }
