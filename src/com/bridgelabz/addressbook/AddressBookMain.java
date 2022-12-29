@@ -137,6 +137,7 @@ public class AddressBookMain {
 			}
 		}
 	}
+
 	// create method to delete contact from addressbook
 	public void deletePerson() {
 		System.out.println("Enter name to Delete");
@@ -150,6 +151,7 @@ public class AddressBookMain {
 			}
 		}
 	}
+
 	// create method to display addressbook details
 	public void displayContactDetails() {
 		for (ContactDetails result : arraylist) {
@@ -170,7 +172,21 @@ public class AddressBookMain {
 			}
 		});
 	}
-	
+	// create method for view details by city and state in the addressbook
+	public void viewPersonsByCity(HashMap<String, AddressBookMain> addressBookList, String city) {
+		for (Map.Entry<String, AddressBookMain> personDetails : addressBookList.entrySet()) {
+			personDetails.getValue().arraylist.stream().filter(person -> person.getCity().equalsIgnoreCase(city))
+					.forEach(person -> System.out.println(person));
+		}
+	}
+
+	public void viewPersonsByState(HashMap<String, AddressBookMain> addressBookList, String state) {
+		for (Map.Entry<String, AddressBookMain> entries : addressBookList.entrySet()) {
+			entries.getValue().arraylist.stream().filter(person -> person.getState().equalsIgnoreCase(state))
+					.forEach(person -> System.out.println(person));
+		}
+	}
+
 	// main method
 	public static void main(String[] args) {
 		AddressBookMain personDetail = new AddressBookMain();
