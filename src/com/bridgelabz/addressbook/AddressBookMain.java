@@ -1,21 +1,28 @@
 package com.bridgelabz.addressbook;
+
 /*
- * Problem Statement -UC 7Ability to ensure there is no Duplicate Entry of the same Person in a particular Address Book 
-- Duplicate Check is done on Person Name while adding person to Address Book.
-- Use Collection Methods to Search Person by Name for Duplicate Entry
+ * Problem Statement -UC 8 Ability to search Person in a City or State across the multiple AddressBook 
+ * - Search Result can show multiple person in the city or state
+- Use Java Streams
  */
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
+	public static HashMap<String, AddressBookMain> addressBookList = new HashMap<>();
 	static Scanner scanner = new Scanner(System.in);
-	static List<ContactDetails> arraylist = new ArrayList<ContactDetails>(); // Use arraylist to save the contactdetails
+	List<ContactDetails> arraylist = new ArrayList<ContactDetails>(); // Use arraylist to save the contactdetails
 	/*
 	 * create method to add new contact in addressbook Apply regex on Addressbook
 	 * details.
 	 */
+
 	public void addContact() {
 		ContactDetails contact = new ContactDetails();
 		System.out.println("Enter First Name: ");
@@ -62,11 +69,13 @@ public class AddressBookMain {
 		try {
 			contact.getFirstName();
 			arraylist.add(contact);
+
 		} catch (InputMismatchException e) {
 			System.out.println("Enter a numeric value for zip code and phone number next time.");
 		}
 		System.out.println("Contact has been saved successfully.");
 	}
+
 	// create method to edit contact in addressbook
 	public void editContact() {
 		System.out.println("Enter name to Edit");
@@ -147,10 +156,21 @@ public class AddressBookMain {
 			System.out.println(result);
 		}
 	}
+
 	// create method for check duplicate entries using Java Stream.
 	public boolean isUnique(ContactDetails contact) {
 		return !arraylist.stream().anyMatch(personContact -> personContact.equals(contact));
 	}
+
+	// create search method to search by city or search by state
+	public void searchByCityOrState(String userDetails) {
+		arraylist.stream().forEach(personDetails -> {
+			if (personDetails.getCity().equals(userDetails) || personDetails.getState().equals(userDetails)) {
+				System.out.println(personDetails);
+			}
+		});
+	}
+	
 	// main method
 	public static void main(String[] args) {
 		AddressBookMain personDetail = new AddressBookMain();
@@ -162,7 +182,9 @@ public class AddressBookMain {
 			System.out.println("2.EDIT");
 			System.out.println("3.DELETE");
 			System.out.println("4.DISPLAY");
-			System.out.println("5.Exit");
+			System.out.println("5.Search By City Or State");
+			System.out.println("6.View By City Or State");
+			System.out.println("7.Exit");
 			System.out.println("Enter your choice");
 			choice = scanner.nextInt();
 
@@ -190,7 +212,7 @@ public class AddressBookMain {
 			case 4:
 				personDetail.displayContactDetails();
 				break;
-			case 5:
+			case 6:
 				System.out.println("Exiting from address book");
 				System.exit(0);
 				break;
