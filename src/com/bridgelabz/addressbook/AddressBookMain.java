@@ -1,9 +1,8 @@
 package com.bridgelabz.addressbook;
-
 /*
- * Problem Statement -UC 8 Ability to search Person in a City or State across the multiple AddressBook 
- * - Search Result can show multiple person in the city or state
-- Use Java Streams
+ * Problem Statement:UC 12 Ability to sort the entries in the address book by City, State, or Zip 
+ * - Write functions to sort person by City, State or Zip 
+ * - Use Collection Library for Sorting - Use Java Streams
  */
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +10,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AddressBookMain {
@@ -207,14 +205,41 @@ public class AddressBookMain {
         System.out.println(count + " Contacts in " + state);
     }
 		//create method sort the entries in the addressbook alphabetically by Person's name
-	public void sortByPersonsName(HashMap<String, AddressBookMain> addressBookList2) {
+	public void sortByPersonsName(HashMap<String, AddressBookMain> addressBookList) {
         List<ContactDetails> list = new ArrayList<>();
-        for (Map.Entry<String, AddressBookMain> personDetails : addressBookList2.entrySet()) {
+        for (Map.Entry<String, AddressBookMain> personDetails : addressBookList.entrySet()) {
             list = new ArrayList<>(personDetails.getValue().arraylist);
         }
         list.stream().sorted((person1, person2) -> (person1.getFirstName()).compareTo(person2.getFirstName()))
                 .forEach(contact -> System.out.println(contact));
     }
+	//create method for sort entries by state, city, or zip
+	 public static void sortByCity(HashMap<String, AddressBookMain> addressBookList){
+	        List<ContactDetails> list = new ArrayList<>();
+	        for (Map.Entry<String, AddressBookMain> personDetails : addressBookList.entrySet()) {
+	            list = personDetails.getValue().arraylist.stream().collect(Collectors.toList());
+	        }
+	        list.stream().sorted((person1 , person2) -> (person1.getCity()).compareTo(person2.getCity()))
+	                .forEach(contact -> System.out.println(contact));
+	    }
+	 
+	 public static void sortByState(HashMap<String, AddressBookMain> addressBookList){
+		 List<ContactDetails> list = new ArrayList<>();
+	        for (Map.Entry<String, AddressBookMain> personDetails : addressBookList.entrySet()) {
+	            list = personDetails.getValue().arraylist.stream().collect(Collectors.toList());
+	        }
+	        list.stream().sorted((person1 , person2) -> (person1.getState()).compareTo(person2.getState()))
+	                .forEach(contact -> System.out.println(contact));
+	    }
+	 
+	 public static void sortByZipcode(HashMap<String, AddressBookMain> addressBookList){
+		 List<ContactDetails> list = new ArrayList<>();
+	        for (Map.Entry<String, AddressBookMain> personDetails : addressBookList.entrySet()) {
+	            list = personDetails.getValue().arraylist.stream().collect(Collectors.toList());
+	        }
+	        list.stream().sorted((person1 , person2) -> (person1.getZipcode()).compareTo(person2.getZipcode()))
+	                .forEach(contact -> System.out.println(contact));
+	    }
 
 	// main method
 	public static void main(String[] args) {
