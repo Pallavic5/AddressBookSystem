@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AddressBookMain {
+	private static final long state = 0;
 	public static HashMap<String, AddressBookMain> addressBookList = new HashMap<>();
 	static Scanner scanner = new Scanner(System.in);
 	List<ContactDetails> arraylist = new ArrayList<ContactDetails>(); // Use arraylist to save the contactdetails
@@ -186,6 +187,25 @@ public class AddressBookMain {
 					.forEach(person -> System.out.println(person));
 		}
 	}
+	//create method for count person by city and state.
+	public void getCountOfPersonByCity(HashMap<String, AddressBookMain> addressBookList,String city) {
+        long count = 0;
+        for(Map.Entry<String, AddressBookMain> personCount : addressBookList.entrySet()) {
+           long result = personCount.getValue().arraylist.stream().filter(person -> person.getCity().equals(city)).count();
+            count += result;
+        }
+        System.out.println(count + " Contacts in " + city);
+    }
+	
+	public void getCountOfPersonByState(HashMap<String, AddressBookMain> addressBookList,String city) {
+        long count = 0;
+        for(Map.Entry<String, AddressBookMain> personCount : addressBookList.entrySet()) {
+            Object state = null;
+			long result = personCount.getValue().arraylist.stream().filter(person -> person.getState().equals(state)).count();
+			count += result;
+        }
+        System.out.println(count + " Contacts in " + state);
+    }
 
 	// main method
 	public static void main(String[] args) {

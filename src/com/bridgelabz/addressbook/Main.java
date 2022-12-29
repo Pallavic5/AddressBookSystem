@@ -13,12 +13,13 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		AddressBookMain main = new AddressBookMain();
 		while (true) {
-			System.out.println("\n1. Add Contact \n2. Display Contact \n3. Edit Contact \n4. Delete Contact \n5.Add New Address Book"
-							+ "\n6.Display Existing Addressbook \n7.Display Address books \n8.Search\n9. ViewPersons\n10. Exit");
+			System.out.println(
+					"\n1. Add Contact \n2. Display Contact \n3. Edit Contact \n4. Delete Contact \n5.Add New Address Book"
+							+ "\n6.Display Existing Addressbook \n7.Display Address books \n8.Search\n9. ViewPersons\n10. CountPerson\n11. Exit");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
-				System.out.println("Enter the address book name to add contact in that address book : ");
+				System.out.println("Enter the address book name to add contact: ");
 				String addressBookName = scanner.next();
 				if (!addressBookList.containsKey(addressBookName)) {
 					System.out.println("Address book not exists!");
@@ -28,7 +29,7 @@ public class Main {
 				}
 				break;
 			case 2:
-				System.out.println("Enter the address book name to display contacts in that address book : ");
+				System.out.println("Enter the address book name to display contacts: ");
 				String addressBookNameFirst = scanner.next();
 				if (!addressBookList.containsKey(addressBookNameFirst)) {
 					System.out.println("Address book not exists!");
@@ -38,7 +39,7 @@ public class Main {
 				}
 				break;
 			case 3:
-				System.out.println("Enter the address book name to edit contacts in that address book : ");
+				System.out.println("Enter the address book name to edit contacts: ");
 				String addressBookNameSecond = scanner.next();
 				if (!addressBookList.containsKey(addressBookNameSecond)) {
 					System.out.println("Address book not exists!");
@@ -48,7 +49,7 @@ public class Main {
 				}
 				break;
 			case 4:
-				System.out.println("Enter the address book name to edit contacts in that address book : ");
+				System.out.println("Enter the address book name to edit contacts: ");
 				String addressBookNameThird = scanner.next();
 				if (!addressBookList.containsKey(addressBookNameThird)) {
 					System.out.println("Address book not exists!");
@@ -69,7 +70,7 @@ public class Main {
 			case 6:
 				Set<String> keys = addressBookList.keySet();
 				if (keys.isEmpty()) {
-					System.out.println("No address books available!");
+					System.out.println("There is no address books available!");
 				}
 				for (String str : keys) {
 					System.out.print(str + " ");
@@ -79,7 +80,7 @@ public class Main {
 			case 7:
 				Set<Map.Entry<String, AddressBookMain>> addressBook = addressBookList.entrySet();
 				if (addressBook.isEmpty()) {
-					System.out.println("No address books available!");
+					System.out.println("There is no address books available!");
 				}
 				for (Map.Entry entry : addressBook) {
 					System.out.println(entry.getKey());
@@ -100,31 +101,47 @@ public class Main {
 					main = (AddressBookMain) entry.getValue();
 					main.searchByCityOrState(userDetails);
 				}
-				break;		
-			case 9:	
+				break;
+			case 9:
 				System.out.println("1.View Persons By City");
 				System.out.println("2.View Persons By State");
-                int result = scanner.nextInt();
-                switch (result){
-                    case 1:
-                        System.out.println("Enter city :");
-                        String city = scanner.next();
-                        main.viewPersonsByCity(addressBookList, city);
-                        break;
-                    case 2:
-                        System.out.println("Enter state :");
-                        String state = scanner.next();
-                        main.viewPersonsByState(addressBookList, state);
-                        break;
-                }
-                break;
+				int result = scanner.nextInt();
+				switch (result) {
+				case 1:
+					System.out.println("Enter city :");
+					String city = scanner.next();
+					main.viewPersonsByCity(addressBookList, city);
+					break;
+				case 2:
+					System.out.println("Enter state :");
+					String state = scanner.next();
+					main.viewPersonsByState(addressBookList, state);
+					break;
+				}
+				break;
 			case 10:
+				System.out.println("1.Count Persons By City");
+				System.out.println("2.Count Persons By State");
+				int input = scanner.nextInt();
+				switch (input) {
+				case 1:
+					System.out.println("Enter city :");
+					String city = scanner.next();
+					main.getCountOfPersonByCity(addressBookList, city);
+					break;
+				case 2:
+					System.out.println("Enter state :");
+					String state = scanner.next();
+					main.getCountOfPersonByCity(addressBookList, state);
+					break;
+				}
+			case 11:
 				System.exit(0);
 				break;
 			default:
-				System.out.println("Invalid Input");
+				System.out.println("Invalid Choice");
 			}
-			
+
 		}
 	}
 }
