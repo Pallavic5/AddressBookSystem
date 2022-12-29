@@ -1,5 +1,9 @@
 package com.bridgelabz.addressbook;
-
+/*
+ * Problem Statement:UC 12 Ability to sort the entries in the address book by City, State, or Zip 
+ * - Write functions to sort person by City, State or Zip 
+ * - Use Collection Library for Sorting - Use Java Streams
+ */
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,9 +17,8 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		AddressBookMain main = new AddressBookMain();
 		while (true) {
-			System.out.println(
-					"\n1. Add Contact \n2. Display Contact \n3. Edit Contact \n4. Delete Contact \n5.Add New Address Book"
-							+ "\n6.Display Existing Addressbook \n7.Display Address books \n8.Search\n9.ViewPersons\n10.CountPerson\n11.SortByPerson's Name\n12.Exit");
+			System.out.println("1Add Contact \n2. Display Contact \n3. Edit Contact \n4. Delete Contact \n5.Add New Address Book"
+							+ "\n6.Display Existing Addressbook \n7.Display Address books \n8.Search\n9.ViewPersons\n10.CountPerson\n11.SortByPerson's Name\n12.SortByCity/State/Zipcode\n13.Exit");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
@@ -139,6 +142,22 @@ public class Main {
 				main.sortByPersonsName(addressBookList);
 				break;
 			case 12:
+				System.out.println("1.Sort By City");
+				System.out.println("2.Sort By State");
+				System.out.println("3.Sort By Zipcode");
+                int sort = scanner.nextInt();
+                switch (sort){
+                    case 1:
+                        AddressBookMain.sortByCity(addressBookList);
+                        break;
+                    case 2:
+                        AddressBookMain.sortByState(addressBookList);
+                        break;
+                    case 3:
+                        AddressBookMain.sortByZipcode(addressBookList);
+                        break;
+                }
+			case 13:
 				System.exit(0);
 				break;
 			default:
