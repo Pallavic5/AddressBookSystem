@@ -12,11 +12,9 @@ public class Main {
 		HashMap<String, AddressBookMain> addressBookList = new HashMap<>();
 		Scanner scanner = new Scanner(System.in);
 		AddressBookMain main = new AddressBookMain();
-
 		while (true) {
-			System.out.println(
-					"\n1. Add Contact \n2. Display Contact \n3. Edit Contact \n4. Delete Contact \n5.Add New Address Book"
-							+ "\n6.Display Existing Addressbook \n7.Display Address books \n8.Search\n9. Exit");
+			System.out.println("\n1. Add Contact \n2. Display Contact \n3. Edit Contact \n4. Delete Contact \n5.Add New Address Book"
+							+ "\n6.Display Existing Addressbook \n7.Display Address books \n8.Search\n9. ViewPersons\n10. Exit");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
@@ -102,14 +100,31 @@ public class Main {
 					main = (AddressBookMain) entry.getValue();
 					main.searchByCityOrState(userDetails);
 				}
-				break;
-			case 9:
+				break;		
+			case 9:	
+				System.out.println("1.View Persons By City");
+				System.out.println("2.View Persons By State");
+                int result = scanner.nextInt();
+                switch (result){
+                    case 1:
+                        System.out.println("Enter city :");
+                        String city = scanner.next();
+                        main.viewPersonsByCity(addressBookList, city);
+                        break;
+                    case 2:
+                        System.out.println("Enter state :");
+                        String state = scanner.next();
+                        main.viewPersonsByState(addressBookList, state);
+                        break;
+                }
+                break;
+			case 10:
 				System.exit(0);
 				break;
 			default:
 				System.out.println("Invalid Input");
 			}
-			scanner.close();
+			
 		}
 	}
 }
