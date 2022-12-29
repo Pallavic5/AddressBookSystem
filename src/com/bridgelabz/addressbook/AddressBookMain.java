@@ -170,22 +170,7 @@ public class AddressBookMain {
 			}
 		});
 	}
-
-	public void viewPersonsByCity(HashMap<String, AddressBookMain> addressBookHashMap, String city) {
-		for (Map.Entry<String, AddressBookMain> entries : addressBookHashMap.entrySet()) {
-			entries.getValue().arraylist.stream().filter(person -> person.getCity().equalsIgnoreCase(city))
-					.forEach(person -> System.out.println(person));
-		}
-
-	}
-
-	public void viewPersonsByState(HashMap<String, AddressBookMain> addressBookHashMap, String state) {
-		for (Map.Entry<String, AddressBookMain> entries : addressBookHashMap.entrySet()) {
-			entries.getValue().arraylist.stream().filter(person -> person.getState().equalsIgnoreCase(state))
-					.forEach(person -> System.out.println(person));
-		}
-	}
-
+	
 	// main method
 	public static void main(String[] args) {
 		AddressBookMain personDetail = new AddressBookMain();
@@ -227,7 +212,7 @@ public class AddressBookMain {
 			case 4:
 				personDetail.displayContactDetails();
 				break;
-			case 5:
+			case 6:
 				System.out.println("Exiting from address book");
 				System.exit(0);
 				break;
