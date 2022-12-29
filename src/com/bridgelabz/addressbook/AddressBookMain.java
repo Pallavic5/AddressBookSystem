@@ -206,6 +206,15 @@ public class AddressBookMain {
         }
         System.out.println(count + " Contacts in " + state);
     }
+		//create method sort the entries in the addressbook alphabetically by Person's name
+	public void sortByPersonsName(HashMap<String, AddressBookMain> addressBookList2) {
+        List<ContactDetails> list = new ArrayList<>();
+        for (Map.Entry<String, AddressBookMain> personDetails : addressBookList2.entrySet()) {
+            list = new ArrayList<>(personDetails.getValue().arraylist);
+        }
+        list.stream().sorted((person1, person2) -> (person1.getFirstName()).compareTo(person2.getFirstName()))
+                .forEach(contact -> System.out.println(contact));
+    }
 
 	// main method
 	public static void main(String[] args) {

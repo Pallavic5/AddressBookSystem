@@ -15,7 +15,7 @@ public class Main {
 		while (true) {
 			System.out.println(
 					"\n1. Add Contact \n2. Display Contact \n3. Edit Contact \n4. Delete Contact \n5.Add New Address Book"
-							+ "\n6.Display Existing Addressbook \n7.Display Address books \n8.Search\n9. ViewPersons\n10. CountPerson\n11. Exit");
+							+ "\n6.Display Existing Addressbook \n7.Display Address books \n8.Search\n9.ViewPersons\n10.CountPerson\n11.SortByPerson's Name\n12.Exit");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
@@ -136,6 +136,9 @@ public class Main {
 					break;
 				}
 			case 11:
+				main.sortByPersonsName(addressBookList);
+				break;
+			case 12:
 				System.exit(0);
 				break;
 			default:
