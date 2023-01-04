@@ -27,13 +27,16 @@ public class AddressBookFileIO {
 	 * The flush() method of Writer Class in Java is used to flush the writer. 
 	 * By flushing the writer, it means to clear the writer of any element that may be or maybe not inside the writer. 
 	 * It neither accepts any parameter nor returns any value.
+	 * 
+	 * FileWriter class is used to write character-oriented data to a file. 
+	 * It is character-oriented class which is used for file handling in java.
 	 */
 	public void writeInToFile() throws IOException {
-		String message = "This is a AddressBook File.";
-		FileWriter fr = new FileWriter("src/static/Addressbook.txt", true);
-		fr.write(message);
-		fr.flush();
-		fr.close();
+		String message = "\nThis is a AddressBook File.In this we can read or write file.";
+		FileWriter fileWriter = new FileWriter("src/static/Addressbook.txt", true);
+		fileWriter.write(message);
+		fileWriter.flush();
+		fileWriter.close();
 		System.out.println("Done!!!");
 	}
 	// method for readintofile
